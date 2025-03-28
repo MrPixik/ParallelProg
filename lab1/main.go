@@ -1,4 +1,4 @@
-package lab1
+package main
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ func f(x float64) float64 {
 func addition(x float64) float64 {
 	return (4.0 + x) / (1.0 + x*x)
 }
-func sabtraction(x float64) float64 {
+func subtraction(x float64) float64 {
 	return (4.0 - x) / (1.0 + x*x)
 }
 func multiplication(x float64) float64 {
@@ -57,12 +57,12 @@ func measurmentStandart(operation func(float64) float64) float64 {
 	return elapsed
 }
 
-func Run() {
+func main() {
 
 	ms := measurmentStandart(f)
 
 	benchmark(ms, addition, "+")
-	benchmark(ms, sabtraction, "-")
+	benchmark(ms, subtraction, "-")
 	benchmark(ms, multiplication, "*")
 	benchmark(ms, division, "/")
 	benchmark(ms, pow, "pow")

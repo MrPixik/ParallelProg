@@ -2,24 +2,10 @@ package main
 
 import (
 	"encoding/binary"
-	"math"
 	"os"
 	"strconv"
 	"sync"
-	"sync/atomic"
 )
-
-var sum uint64 // Используем uint64 вместо float64
-
-func atomicAddFloat64(addr *uint64, delta float64) {
-	for {
-		old := atomic.LoadUint64(addr)                                // Загружаем текущее значение
-		newVal := math.Float64bits(math.Float64frombits(old) + delta) // Увеличиваем на delta
-		if atomic.CompareAndSwapUint64(addr, old, newVal) {           // CAS: заменяем, если не изменилось
-			return
-		}
-	}
-}
 
 func f(x float64) float64 {
 	return 4.0 / (1.0 + x*x)
@@ -36,6 +22,8 @@ func main() {
 	h, _ := strconv.ParseFloat(os.Args[4], 64)
 
 	var wg sync.WaitGroup
+	var m sync.Mutex
+	var sum float64
 
 	chunkSize := (b - a) / float64(threadNum)
 
@@ -50,7 +38,9 @@ func main() {
 			for i := a; i < b; i += h {
 				localSum += middleRiemannSum(i, i+h)
 			}
-			atomicAddFloat64(&sum, localSum)
+			m.Lock()
+			sum += localSum
+			m.Unlock()
 		}(ai, bi)
 	}
 

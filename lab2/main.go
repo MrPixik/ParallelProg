@@ -1,4 +1,4 @@
-package lab2
+package main
 
 import (
 	"bytes"
@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	processFileName = "S:\\MYFILES\\programming\\Go\\Git Projects\\ParallelProg\\lab2\\cmd\\process"
+	processFileName = "lab2/proc/process.exe"
 	a               = 0.0
 	b               = 1.0
 	n               = 1000000000
@@ -40,7 +40,7 @@ func runProc(outCh chan<- float64, wg *sync.WaitGroup, goroutinesNum, ai, bi, h 
 	outCh <- readSum
 }
 
-func Run() {
+func main() {
 	processNum, _ := strconv.Atoi(os.Args[1])
 	goroutinesNum := os.Args[2]
 

@@ -32,7 +32,7 @@ func runProc(outCh chan<- float64, wg *sync.WaitGroup, goroutinesNum, ai, bi, h 
 	}
 
 	var readSum float64
-	err = binary.Read(&out, binary.LittleEndian, &readSum) // Должен быть тот же порядок, что и при записи!
+	err = binary.Read(&out, binary.LittleEndian, &readSum)
 	if err != nil {
 		fmt.Println("binary.Read failed:", err)
 		return
@@ -69,5 +69,5 @@ func main() {
 	}
 
 	integral *= h
-	fmt.Printf("time=%f sum=%22.15e\n", time.Since(tStart).Seconds(), integral)
+	fmt.Printf("Time: %f Integral: %22.15e\n", time.Since(tStart).Seconds(), integral)
 }

@@ -1,20 +1,29 @@
 # Параллельное программирование
 
-A URL shortening service written in Go that allows users to submit URLs and receive shortened versions in return.
-
-## Project Structure
+## Структура проекта
 
 ```bash
 ParallelProg/
-├── lab1/                       #1 laboratory work
+├── lab1/                       # 1 Лабораторная работа #
 │   └── main.go          
-├── lab2/                       #2 laboratory work
+├── lab2/                       # 2 Лабораторная работа #
 │   ├── proc/               
 │   │   ├── process.go      
 │   │   └── process.exe     
-│   └── main.go                      
-├── go.mod                          # Go module file
-└── .gitignore                      # Git ignore file
+│   └── main.go    
+├── lab3/                       # 3 Лабораторная работа #
+│   ├── static/                   # Структуры и константы, используемые в работе
+│   │   ├── constants.go      
+│   │   └── models.exe  
+│   ├── async/                    # Асинхронный вариант
+│   │   ├── async.go      
+│   │   ├── summaries.txt
+│   ├── syncr/                    # Синхронный вариант
+│   │   ├── sync.go         
+│   │   ├── summaries.txt         
+│   └── main.go                  
+├── go.mod                          
+└── .gitignore                      
 ```
 ## Установка
 
@@ -72,20 +81,17 @@ Time: <время_выполнения> Integral: <значение_интегр
 ```
 ## 3 Лабораторная работа
 ### Формулировка задания:
-написать программу, решающую задачу численного
-интегрирования с помощью тяжелых и легких процессов одновременно,
-используя семафоры для доступа к общим участкам памяти. 
-### Сборка:
-В корневой директории проекта выполнить команду:
-``` bash
-go build -o lab3/proc/process.exe lab3/proc/process.go
-```
+С помощью библиотеки асинхронизации переписать парсер так, чтобы получалось
+ускорение при выполнении запросов.
 ### Запуск программы:
 Синтаксис запуска основной программы:
 ```bash
-go run lab3/main.go <кол-во_процессов> <кол-во_потоков_в_каждом_процессе>
+go run lab3/main.go
 ```
 ### Ожидаемый вывод:
 ``` bash
-Time: <время_выполнения> Integral: <значение_интеграла>
+Asynchrone variant:
+Time: 49.973061, Articles processed: 10
+Synchrone variant:
+Time: 107.175381, Articles processed: 10
 ```

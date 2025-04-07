@@ -21,7 +21,15 @@ ParallelProg/
 │   ├── syncr/                    # Синхронный вариант
 │   │   ├── sync.go         
 │   │   ├── summaries.txt         
-│   └── main.go                  
+│   └── main.go     
+├── lab4/                       # 4 Лабораторная работа #
+│   ├── static/                   # Rонстанты, используемые в работе
+│   │   ├── constants.go      
+│   ├── parallel/                    # Параллельная сортировка
+│   │   ├── parallel.go      
+│   ├── non_parallel/                    # Последовательная сортировка
+│   │   ├── sync.go         
+│   └── main.go                    
 ├── go.mod                          
 └── .gitignore                      
 ```
@@ -94,4 +102,19 @@ Asynchrone variant:
 Time: 49.973061, Articles processed: 10
 Synchrone variant:
 Time: 107.175381, Articles processed: 10
+```
+## 4 Лабораторная работа
+### Формулировка задания:
+Реализовать параллельную сортировку массива, для произвольного числа процессов.
+### Запуск программы:
+Синтаксис запуска основной программы:
+```bash
+go run lab4/main.go
+```
+### Ожидаемый вывод:
+``` bash
+Non-Parallel sort:
+Time to sort: 2.564903 sec, slice length: 10000000
+Parallel sort (proc num 4)
+Time to sort: 0.866254 sec, slice length: 10000000
 ```
